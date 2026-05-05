@@ -17,7 +17,8 @@ schedule>=1.1.0
 python-dotenv>=0.21.0
 
 # Email notifications
-secure-smtplib>=0.1.1
+# Note: secure-smtplib is unmaintained; using smtplib from stdlib instead
+# secure-smtplib>=0.1.1
 
 # Database support
 sqlalchemy>=1.4.0
