@@ -36,3 +36,4 @@ black>=22.10.0
 
 # Personal additions
 jupyter>=1.0.0  # for interactive exploration and experimentation
+ipywidgets>=8.0.0  # enables interactive widgets in Jupyter notebooks
