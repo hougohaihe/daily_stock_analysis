@@ -38,3 +38,6 @@ black>=22.10.0
 jupyter>=1.0.0  # for interactive exploration and experimentation
 ipywidgets>=8.0.0  # enables interactive widgets in Jupyter notebooks
 nbconvert>=7.0.0  # useful for exporting notebooks to HTML/PDF for sharing
+
+# Extra tools I find useful personally
+rich>=12.0.0  # pretty terminal output, helpful when running scripts from the command line
