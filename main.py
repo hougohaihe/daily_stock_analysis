@@ -68,7 +68,7 @@ Examples:
     parser.add_argument(
         "--format",
         choices=["json", "csv", "html", "all"],
-        default="json",
+        default="html",  # changed default to html since it's easier to read at a glance
         help="Output format for the analysis report",
     )
     parser.add_argument(
@@ -106,37 +106,4 @@ def main() -> int:
     args = parse_arguments()
 
     if args.verbose:
-        logging.getLogger().setLevel(logging.DEBUG)
-
-    try:
-        ensure_directories(args.output)
-    except OSError as e:
-        logger.error(f"Failed to create required directories: {e}")
-        return 1
-
-    # Resolve stock symbols: CLI args > env variable > error
-    symbols = args.symbols or get_symbols_from_env()
-    if not symbols:
-        logger.error(
-            "No stock symbols provided. Use --symbols or set DEFAULT_SYMBOLS in .env"
-        )
-        return 1
-
-    symbols = [s.upper() for s in symbols]
-    logger.info(f"Starting daily stock analysis for {len(symbols)} symbol(s): {', '.join(symbols)}")
-    logger.info(f"Analysis date: {args.date}")
-    logger.info(f"Output directory: {args.output}")
-
-    # TODO: Initialize data fetcher, analyzer, and reporter modules
-    # from src.fetcher import StockDataFetcher
-    # from src.analyzer import StockAnalyzer
-    # from src.reporter import ReportGenerator
-
-    logger.info("Analysis pipeline initialized successfully")
-    logger.info(f"Report will be saved to: {args.output}/analysis_{args.date}.{args.format}")
-
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+        logging.getLo
