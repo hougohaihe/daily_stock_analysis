@@ -68,7 +68,7 @@ Examples:
     parser.add_argument(
         "--format",
         choices=["json", "csv", "html", "all"],
-        default="html",  # changed default to html since it's easier to read at a glance
+        default="json",  # prefer json for personal use — easier to parse/script against
         help="Output format for the analysis report",
     )
     parser.add_argument(
@@ -103,7 +103,4 @@ def main() -> int:
     Returns:
         int: Exit code (0 for success, non-zero for failure)
     """
-    args = parse_arguments()
-
-    if args.verbose:
-        logging.getLo
+    arg
