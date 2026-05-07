@@ -24,8 +24,8 @@ class Config:
 
     # Analysis settings
     lookback_days: int = 90  # extended to 90 days for better trend visibility
-    moving_avg_short: int = 5
-    moving_avg_long: int = 20
+    moving_avg_short: int = 10  # changed from 5 to 10 for less noise
+    moving_avg_long: int = 50   # changed from 20 to 50 for longer-term trend
     rsi_period: int = 14
     volume_avg_period: int = 10
 
@@ -69,8 +69,8 @@ def load_config() -> Config:
 
     # Analysis parameters
     cfg.lookback_days = int(os.getenv("LOOKBACK_DAYS", "90"))  # default bumped to 90
-    cfg.moving_avg_short = int(os.getenv("MOVING_AVG_SHORT", "5"))
-    cfg.moving_avg_long = int(os.getenv("MOVING_AVG_LONG", "20"))
+    cfg.moving_avg_short = int(os.getenv("MOVING_AVG_SHORT", "10"))  # default 10
+    cfg.moving_avg_long = int(os.getenv("MOVING_AVG_LONG", "50"))   # default 50
     cfg.rsi_period = int(os.getenv("RSI_PERIOD", "14"))
     cfg.volume_avg_period = int(os.getenv("VOLUME_AVG_PERIOD", "10"))
 
@@ -89,8 +89,4 @@ def load_config() -> Config:
     if cfg.data_source == "alphavantage" and not cfg.api_key:
         raise ValueError(
             "API_KEY or ALPHA_VANTAGE_API_KEY is required when "
-            "DATA_SOURCE is 'alphavantage'."
-        )
-
-    # Report settings
-    cfg.report_format = os.getenv("
+            "DATA_SOURCE is 'alphavant"
