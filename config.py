@@ -23,7 +23,7 @@ class Config:
     logs_dir: str = "logs"
 
     # Analysis settings
-    lookback_days: int = 30
+    lookback_days: int = 90  # extended to 90 days for better trend visibility
     moving_avg_short: int = 5
     moving_avg_long: int = 20
     rsi_period: int = 14
@@ -68,7 +68,7 @@ def load_config() -> Config:
     cfg.logs_dir = os.getenv("LOGS_DIR", "logs")
 
     # Analysis parameters
-    cfg.lookback_days = int(os.getenv("LOOKBACK_DAYS", "30"))
+    cfg.lookback_days = int(os.getenv("LOOKBACK_DAYS", "90"))  # default bumped to 90
     cfg.moving_avg_short = int(os.getenv("MOVING_AVG_SHORT", "5"))
     cfg.moving_avg_long = int(os.getenv("MOVING_AVG_LONG", "20"))
     cfg.rsi_period = int(os.getenv("RSI_PERIOD", "14"))
@@ -93,33 +93,4 @@ def load_config() -> Config:
         )
 
     # Report settings
-    cfg.report_format = os.getenv("REPORT_FORMAT", "html").lower()
-    cfg.send_email = os.getenv("SEND_EMAIL", "false").lower() == "true"
-    cfg.email_recipient = os.getenv("EMAIL_RECIPIENT")
-    cfg.email_sender = os.getenv("EMAIL_SENDER")
-    cfg.smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
-    cfg.smtp_port = int(os.getenv("SMTP_PORT", "587"))
-    cfg.smtp_password = os.getenv("SMTP_PASSWORD")
-
-    if cfg.send_email and not cfg.email_recipient:
-        raise ValueError("EMAIL_RECIPIENT is required when SEND_EMAIL is true.")
-
-    # Alert thresholds
-    cfg.price_change_threshold = float(os.getenv("PRICE_CHANGE_THRESHOLD", "5.0"))
-    cfg.volume_spike_threshold = float(os.getenv("VOLUME_SPIKE_THRESHOLD", "2.0"))
-    cfg.rsi_overbought = float(os.getenv("RSI_OVERBOUGHT", "70.0"))
-    cfg.rsi_oversold = float(os.getenv("RSI_OVERSOLD", "30.0"))
-
-    return cfg
-
-
-# Module-level singleton for convenience
-_config: Optional[Config] = None
-
-
-def get_config() -> Config:
-    """Return the cached Config instance, loading it on first call."""
-    global _config
-    if _config is None:
-        _config = load_config()
-    return _config
+    cfg.report_format = os.getenv("
