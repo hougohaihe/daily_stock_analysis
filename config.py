@@ -27,7 +27,7 @@ class Config:
     moving_avg_short: int = 10  # changed from 5 to 10 for less noise
     moving_avg_long: int = 50   # changed from 20 to 50 for longer-term trend
     rsi_period: int = 14
-    volume_avg_period: int = 10
+    volume_avg_period: int = 20  # bumped to 20 for a smoother volume baseline
 
     # Data source settings
     data_source: str = "yfinance"  # yfinance or alphavantage
@@ -72,7 +72,7 @@ def load_config() -> Config:
     cfg.moving_avg_short = int(os.getenv("MOVING_AVG_SHORT", "10"))  # default 10
     cfg.moving_avg_long = int(os.getenv("MOVING_AVG_LONG", "50"))   # default 50
     cfg.rsi_period = int(os.getenv("RSI_PERIOD", "14"))
-    cfg.volume_avg_period = int(os.getenv("VOLUME_AVG_PERIOD", "10"))
+    cfg.volume_avg_period = int(os.getenv("VOLUME_AVG_PERIOD", "20"))  # default 20
 
     # Data source
     cfg.data_source = os.getenv("DATA_SOURCE", "yfinance").lower()
@@ -87,6 +87,4 @@ def load_config() -> Config:
             "Choose 'yfinance' or 'alphavantage'."
         )
     if cfg.data_source == "alphavantage" and not cfg.api_key:
-        raise ValueError(
-            "API_KEY or ALPHA_VANTAGE_API_KEY is required when "
-            "DATA_SOURCE is 'alphavant"
+        rai
