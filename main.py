@@ -68,7 +68,7 @@ Examples:
     parser.add_argument(
         "--format",
         choices=["json", "csv", "html", "all"],
-        default="json",  # prefer json for personal use — easier to parse/script against
+        default="html",  # prefer html for personal use — easier to read at a glance in the browser
         help="Output format for the analysis report",
     )
     parser.add_argument(
@@ -99,9 +99,4 @@ def get_symbols_from_env() -> list[str]:
 
 def main() -> int:
     """
-    Main execution function for daily stock analysis.
-
-    Returns:
-        int: Exit code (0 for success, non-zero for failure)
-    """
-    arg
+    Main execution function for daily stock analys
