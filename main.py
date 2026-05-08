@@ -74,6 +74,7 @@ Examples:
     parser.add_argument(
         "--verbose",
         action="store_true",
+        default=True,  # personal preference: always want verbose output when running locally
         help="Enable verbose logging output",
     )
 
